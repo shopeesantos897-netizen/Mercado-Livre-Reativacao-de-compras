@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pagamento Pix</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   TELA DE CARREGAMENTO
+========================= */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logoScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logoScreen img {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+}
+
+/* Caso a logo não seja encontrada */
+#logoFallback {
+  display: none;
+
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+  background: #ffd800;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+}
+
+#spinnerScreen {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+
+  border: 4px solid #e5e5e5;
+  border-top-color: #3984ed;
+
+  border-radius: 50%;
+
+  animation: spin .85s linear 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   PAGAMENTO
+========================= */
+
+#payment {
+  display: none;
+  min-height: 100vh;
+}
+
+.top {
+  height: 65px;
+  background: #08a653;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: 100%;
+  max-width: 630px;
+
+  margin: 0 auto;
+
+  padding: 0 18px 25px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+  background: #fff;
+
+  border-radius: 9px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,.08);
+
+  overflow: hidden;
+
+  margin-top: 66px;
+}
+
+/* =========================
+   TOPO DO CARD
+========================= */
+
+.intro {
+  text-align: center;
+
+  padding: 0 20px 18px;
+}
+
+.logo-icon {
+  width: 72px;
+  height: 72px;
+
+  border: 4px solid #159c5c;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: -36px auto 18px;
+
+  background: #fff;
+
+  color: #159c5c;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 15px;
+
+  color: #666;
+
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 25px;
+
+  line-height: 1.25;
+
+  margin: 0;
+
+  font-weight: 700;
+}
+
+/* =========================
+   FAIXA AMARELA
+========================= */
+
+.yellow {
+  background: #ffdf00;
+
+  padding: 10px 8px;
+
+  text-align: center;
+
+  font-size: 15px;
+
+  font-weight: bold;
+}
+
+/* =========================
+   INSTRUÇÕES
+========================= */
+
+.instructions {
+  margin-top: 0;
+
+  padding: 0 18px 22px;
+}
+
+.instructions h2 {
+  font-size: 21px;
+
+  margin: 0 -18px;
+
+  padding: 17px 18px;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.steps {
+  padding-top: 5px;
+
+  font-size: 15px;
+
+  line-height: 1.35;
+}
+
+.steps p {
+  margin: 10px 0;
+}
+
+/* =========================
+   BENEFICIÁRIO
+========================= */
+
+.recipient {
+  background: #f3f3f3;
+
+  padding: 11px;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+
+  margin-top: 12px;
+
+  line-height: 1.4;
+}
+
+/* =========================
+   CÓDIGO PIX
+========================= */
+
+.code-area {
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  padding: 12px;
+
+  margin-top: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+#pixDisplay {
+  flex: 1;
+
+  overflow-wrap: anywhere;
+
+  line-height: 1.35;
+
+  max-height: 52px;
+
+  overflow: hidden;
+}
+
+.copy-small {
+  color: #4783c7;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  border: 0;
+
+  background: none;
+
+  padding: 4px;
+}
+
+/* =========================
+   AVISO
+========================= */
+
+.notice {
+  margin-top: 14px;
+
+  background: #f3f3f3;
+
+  border-left: 4px solid #3984ed;
+
+  padding: 12px;
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+}
+
+.info {
+  background: #3984ed;
+
+  color: white;
+
+  border-radius: 50%;
+
+  min-width: 21px;
+
+  height: 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: bold;
+
+  font-size: 13px;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.main-button {
+  width: 100%;
+
+  height: 55px;
+
+  margin-top: 14px;
+
+  background: #3485ef;
+
+  border: none;
+
+  border-radius: 7px;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.main-button:active {
+  background: #236fce;
+}
+
+#feedback {
+  text-align: center;
+
+  color: #159c5c;
+
+  font-size: 13px;
+
+  min-height: 16px;
+
+  margin: 8px 0 0;
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 400px) {
+
+  .top {
+    height: 60px;
+  }
+
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .card {
+    margin-top: 58px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  .instructions h2 {
+    font-size: 20px;
+  }
+
+  .steps {
+    font-size: 14px;
+  }
+
+  .main-button {
+    height: 52px;
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     TELA DE ABERTURA
+========================= -->
+
+<div id="loading">
+
+  <div id="logoScreen">
+
+    <img
+      src="logo.png"
+      alt="Logo"
+      onerror="
+        this.style.display='none';
+        document.getElementById('logoFallback').style.display='flex';
+      "
+    >
+
+    <div id="logoFallback">
+      R$
+    </div>
+
+  </div>
+
+  <div id="spinnerScreen">
+    <div class="spinner"></div>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PÁGINA DE PAGAMENTO
+========================= -->
+
+<div id="payment">
+
+  <div class="top"></div>
+
+  <div class="container">
+
+    <div class="card">
+
+      <div class="intro">
+
+        <div class="logo-icon">
+          R$
+        </div>
+
+        <div class="small">
+          Falta só um passo!
+        </div>
+
+        <h1>
+          Pague <span id="amount"></span>
+          via Pix para garantir sua compra
+        </h1>
+
+      </div>
+
+
+      <div class="yellow">
+        Confira os dados antes de pagar
+      </div>
+
+
+      <div class="instructions">
+
+        <h2>
+          Instruções de pagamento
+        </h2>
+
+
+        <div class="steps">
+
+          <p>
+            1. Acesse seu Internet Banking ou app de pagamentos.
+          </p>
+
+          <p>
+            2. Escolha pagar via Pix.
+          </p>
+
+          <p>
+            3. Cole o código abaixo.
+          </p>
+
+        </div>
+
+
+        <div class="recipient">
+
+          <strong>Beneficiário:</strong>
+
+          <span id="beneficiary"></span>
+
+        </div>
+
+
+        <div class="code-area">
+
+          <div id="pixDisplay"></div>
+
+          <button
+            class="copy-small"
+            onclick="copyPix()"
+          >
+            Copiar
+          </button>
+
+        </div>
+
+
+        <div class="notice">
+
+          <div class="info">
+            i
+          </div>
+
+          <div>
+            Confira o nome do beneficiário e o valor antes de confirmar o pagamento.
+          </div>
+
+        </div>
+
+
+        <button
+          class="main-button"
+          onclick="copyPix()"
+        >
+          Copiar código
+        </button>
+
+
+        <p id="feedback"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   DADOS DO PAGAMENTO
+   ALTERE SOMENTE ESTES 3 CAMPOS
+========================================== */
+
+const VALOR = "53,99";
+
+const PIX = "COLE_SEU_PIX_COPIA_E_COLA_AQUI";
+
+const BENEFICIARIO = "NOME DO RECEBEDOR";
+
+
+/* ==========================================
+   NÃO PRECISA ALTERAR ABAIXO
+========================================== */
+
+document.getElementById("amount").textContent =
+  "R$ " + VALOR;
+
+document.getElementById("beneficiary").textContent =
+  BENEFICIARIO;
+
+document.getElementById("pixDisplay").textContent =
+  PIX.length > 48
+    ? PIX.substring(0, 48) + "..."
+    : PIX;
+
+
+/* ==========================================
+   TELA DE ABERTURA
+========================================== */
+
+setTimeout(() => {
+
+  document.getElementById("logoScreen").style.display =
+    "none";
+
+  document.getElementById("spinnerScreen").style.display =
+    "flex";
+
+
+  setTimeout(() => {
+
+    document.getElementById("loading").style.display =
+      "none";
+
+    document.getElementById("payment").style.display =
+      "block";
+
+  }, 850);
+
+}, 2000);
+
+
+/* ==========================================
+   COPIAR PIX
+========================================== */
+
+async function copyPix() {
+
+  if (
+    PIX === "COLE_SEU_PIX_COPIA_E_COLA_AQUI" ||
+    !PIX.trim()
+  ) {
+
+    alert("O código Pix ainda não foi configurado.");
+
+    return;
+  }
+
+
+  try {
+
+    await navigator.clipboard.writeText(PIX);
+
+  } catch (error) {
+
+    const area = document.createElement("textarea");
+
+    area.value = PIX;
+
+    document.body.appendChild(area);
+
+    area.select();
+
+    const copied =
+      document.execCommand("copy");
+
+    area.remove();
+
+    if (!copied) {
+
+      alert(
+        "Não foi possível copiar. Tente novamente."
+      );
+
+      return;
+    }
+
+  }
+
+
+  document.getElementById("feedback").textContent =
+    "Código Pix copiado!";
+
+}
+
+</script>
+
+</body>
+</html>
