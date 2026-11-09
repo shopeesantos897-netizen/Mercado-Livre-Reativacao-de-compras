@@ -22,7 +22,7 @@ body {
 }
 
 /* =====================================
-   TELA INICIAL
+   TELA DE ABERTURA
 ===================================== */
 
 #loading {
@@ -67,21 +67,36 @@ body {
 }
 
 @keyframes spin {
-
   to {
     transform: rotate(360deg);
   }
-
 }
 
+
 /* =====================================
-   PÁGINA
+   PÁGINA DE PAGAMENTO
 ===================================== */
 
 #payment {
   display: none;
   min-height: 100vh;
 }
+
+
+/* =====================================
+   BARRA VERDE DO TOPO
+===================================== */
+
+.top {
+  width: 100%;
+  height: 64px;
+  background: #08a653;
+}
+
+
+/* =====================================
+   CONTAINER
+===================================== */
 
 .container {
   width: 100%;
@@ -91,6 +106,7 @@ body {
 
   padding: 0 14px 25px;
 }
+
 
 /* =====================================
    CARD PRINCIPAL
@@ -110,8 +126,9 @@ body {
   margin-top: 48px;
 }
 
+
 /* =====================================
-   TOPO
+   CABEÇALHO
 ===================================== */
 
 .intro {
@@ -120,7 +137,10 @@ body {
   padding: 0 18px 18px;
 }
 
-/* CÍRCULO DO R$ */
+
+/* =====================================
+   CÍRCULO COM R$
+===================================== */
 
 .logo-icon {
   width: 72px;
@@ -147,6 +167,7 @@ body {
   line-height: 1;
 }
 
+
 /* =====================================
    TEXTO SUPERIOR
 ===================================== */
@@ -171,6 +192,7 @@ h1 {
   color: #222222;
 }
 
+
 /* =====================================
    FAIXA AMARELA
 ===================================== */
@@ -188,6 +210,7 @@ h1 {
 
   color: #222222;
 }
+
 
 /* =====================================
    INSTRUÇÕES
@@ -211,6 +234,7 @@ h1 {
   font-weight: 700;
 }
 
+
 /* =====================================
    PASSOS
 ===================================== */
@@ -226,6 +250,7 @@ h1 {
 .steps p {
   margin: 10px 0;
 }
+
 
 /* =====================================
    BENEFICIÁRIO
@@ -248,6 +273,7 @@ h1 {
 .recipient strong {
   font-weight: 700;
 }
+
 
 /* =====================================
    CÓDIGO PIX
@@ -307,6 +333,7 @@ h1 {
   padding: 5px;
 }
 
+
 /* =====================================
    AVISO
 ===================================== */
@@ -355,6 +382,7 @@ h1 {
   font-weight: bold;
 }
 
+
 /* =====================================
    BOTÃO
 ===================================== */
@@ -385,8 +413,9 @@ h1 {
   background: #236fce;
 }
 
+
 /* =====================================
-   MENSAGEM
+   MENSAGEM DE COPIADO
 ===================================== */
 
 #feedback {
@@ -401,11 +430,16 @@ h1 {
   font-size: 13px;
 }
 
+
 /* =====================================
    CELULAR
 ===================================== */
 
 @media (max-width: 400px) {
+
+  .top {
+    height: 64px;
+  }
 
   .container {
     padding-left: 12px;
@@ -459,11 +493,11 @@ h1 {
 
   .main-button {
     height: 52px;
-
     font-size: 17px;
   }
 
 }
+
 
 /* =====================================
    TELAS MUITO PEQUENAS
@@ -523,6 +557,12 @@ h1 {
 
 <div id="payment">
 
+
+  <!-- BARRA VERDE -->
+
+  <div class="top"></div>
+
+
   <div class="container">
 
     <div class="card">
@@ -551,7 +591,7 @@ h1 {
 
 
       <!-- =================================
-           FAIXA
+           FAIXA AMARELA
       ================================== -->
 
       <div class="yellow">
@@ -587,9 +627,7 @@ h1 {
         </div>
 
 
-        <!-- =================================
-             BENEFICIÁRIO
-        ================================== -->
+        <!-- BENEFICIÁRIO -->
 
         <div class="recipient">
 
@@ -600,9 +638,7 @@ h1 {
         </div>
 
 
-        <!-- =================================
-             PIX
-        ================================== -->
+        <!-- CÓDIGO PIX -->
 
         <div class="code-area">
 
@@ -618,9 +654,7 @@ h1 {
         </div>
 
 
-        <!-- =================================
-             AVISO
-        ================================== -->
+        <!-- AVISO -->
 
         <div class="notice">
 
@@ -635,9 +669,7 @@ h1 {
         </div>
 
 
-        <!-- =================================
-             BOTÃO
-        ================================== -->
+        <!-- BOTÃO -->
 
         <button
           class="main-button"
@@ -690,12 +722,10 @@ document.getElementById("beneficiary").textContent =
 
 
 /* =====================================================
-   MOSTRAR PIX
+   MOSTRAR CÓDIGO PIX
 ===================================================== */
 
-if (
-  PIX.length > 48
-) {
+if (PIX.length > 48) {
 
   document.getElementById("pixDisplay").textContent =
     PIX.substring(0, 48) + "...";
@@ -735,7 +765,7 @@ setTimeout(function() {
 
 
 /* =====================================================
-   COPIAR CÓDIGO PIX
+   COPIAR PIX
 ===================================================== */
 
 async function copyPix() {
@@ -757,9 +787,7 @@ async function copyPix() {
 
     await navigator.clipboard.writeText(PIX);
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     const area =
       document.createElement("textarea");
