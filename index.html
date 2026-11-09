@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Pagamento Pix</title>
+
+
+<!-- =====================================================
+     PRÉVIA DO LINK NO WHATSAPP
+     
+     TROQUE:
+     https://SEU-DOMINIO.com/
+     
+     PELO ENDEREÇO REAL DA SUA PÁGINA.
+===================================================== -->
+
+<meta
+  property="og:type"
+  content="website"
+>
+
+<meta
+  property="og:title"
+  content="Pagamento Pix"
+>
+
+<meta
+  property="og:description"
+  content="Acesse a página para consultar as informações do seu pagamento."
+>
+
+<meta
+  property="og:image"
+  content="https://SEU-DOMINIO.com/logo.png"
+>
+
+<meta
+  property="og:image:alt"
+  content="Logo"
+>
+
+<meta
+  property="og:url"
+  content="https://SEU-DOMINIO.com/"
+>
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+>
+
+<meta
+  name="twitter:title"
+  content="Pagamento Pix"
+>
+
+<meta
+  name="twitter:description"
+  content="Acesse a página para consultar as informações do seu pagamento."
+>
+
+<meta
+  name="twitter:image"
+  content="https://SEU-DOMINIO.com/logo.png"
+>
+
 
 <style>
 
@@ -16,49 +82,75 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   background: #f5f5f5;
+
   color: #222;
+
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 /* =====================================
    TELA DE ABERTURA
 ===================================== */
 
 #loading {
+
   position: fixed;
+
   inset: 0;
+
   background: #ffffff;
+
   z-index: 9999;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
+
 
 #logoScreen {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
 
+
 #logoScreen img {
+
   width: 120px;
+
   height: 120px;
+
   object-fit: contain;
 }
 
+
 #spinnerScreen {
+
   display: none;
+
   align-items: center;
+
   justify-content: center;
 }
 
+
 .spinner {
+
   width: 48px;
+
   height: 48px;
 
   border: 4px solid #e5e5e5;
+
   border-top-color: #159c5c;
 
   border-radius: 50%;
@@ -66,30 +158,40 @@ body {
   animation: spin 0.85s linear 1;
 }
 
+
 @keyframes spin {
+
   to {
+
     transform: rotate(360deg);
+
   }
+
 }
 
 
 /* =====================================
-   PÁGINA DE PAGAMENTO
+   PÁGINA
 ===================================== */
 
 #payment {
+
   display: none;
+
   min-height: 100vh;
 }
 
 
 /* =====================================
-   BARRA VERDE DO TOPO
+   BARRA VERDE
 ===================================== */
 
 .top {
+
   width: 100%;
+
   height: 64px;
+
   background: #08a653;
 }
 
@@ -99,7 +201,9 @@ body {
 ===================================== */
 
 .container {
+
   width: 100%;
+
   max-width: 600px;
 
   margin: 0 auto;
@@ -109,10 +213,11 @@ body {
 
 
 /* =====================================
-   CARD PRINCIPAL
+   CARD
 ===================================== */
 
 .card {
+
   position: relative;
 
   background: #ffffff;
@@ -132,6 +237,7 @@ body {
 ===================================== */
 
 .intro {
+
   text-align: center;
 
   padding: 0 18px 18px;
@@ -139,11 +245,13 @@ body {
 
 
 /* =====================================
-   CÍRCULO COM R$
+   CÍRCULO R$
 ===================================== */
 
 .logo-icon {
+
   width: 72px;
+
   height: 72px;
 
   border: 4px solid #159c5c;
@@ -153,7 +261,9 @@ body {
   background: #ffffff;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   margin: -36px auto 16px;
@@ -169,10 +279,11 @@ body {
 
 
 /* =====================================
-   TEXTO SUPERIOR
+   TEXTO
 ===================================== */
 
 .small {
+
   font-size: 15px;
 
   color: #666666;
@@ -180,7 +291,9 @@ body {
   margin-bottom: 10px;
 }
 
+
 h1 {
+
   margin: 0;
 
   font-size: 25px;
@@ -198,6 +311,7 @@ h1 {
 ===================================== */
 
 .yellow {
+
   background: #ffdf00;
 
   padding: 10px 8px;
@@ -217,10 +331,13 @@ h1 {
 ===================================== */
 
 .instructions {
+
   padding: 0 18px 20px;
 }
 
+
 .instructions h2 {
+
   margin: 0 -18px;
 
   padding: 16px 18px;
@@ -240,6 +357,7 @@ h1 {
 ===================================== */
 
 .steps {
+
   padding-top: 5px;
 
   font-size: 15px;
@@ -247,7 +365,9 @@ h1 {
   line-height: 1.4;
 }
 
+
 .steps p {
+
   margin: 10px 0;
 }
 
@@ -257,6 +377,7 @@ h1 {
 ===================================== */
 
 .recipient {
+
   background: #f3f3f3;
 
   padding: 12px;
@@ -270,16 +391,19 @@ h1 {
   line-height: 1.4;
 }
 
+
 .recipient strong {
+
   font-weight: 700;
 }
 
 
 /* =====================================
-   CÓDIGO PIX
+   PIX
 ===================================== */
 
 .code-area {
+
   border: 1px solid #dddddd;
 
   border-radius: 8px;
@@ -299,7 +423,9 @@ h1 {
   min-height: 70px;
 }
 
+
 #pixDisplay {
+
   flex: 1;
 
   min-width: 0;
@@ -317,7 +443,9 @@ h1 {
   overflow: hidden;
 }
 
+
 .copy-small {
+
   flex-shrink: 0;
 
   border: none;
@@ -339,6 +467,7 @@ h1 {
 ===================================== */
 
 .notice {
+
   margin-top: 14px;
 
   background: #f3f3f3;
@@ -360,10 +489,13 @@ h1 {
   line-height: 1.35;
 }
 
+
 .info {
+
   flex-shrink: 0;
 
   width: 21px;
+
   height: 21px;
 
   background: #3984ed;
@@ -375,6 +507,7 @@ h1 {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   font-size: 13px;
@@ -388,6 +521,7 @@ h1 {
 ===================================== */
 
 .main-button {
+
   width: 100%;
 
   height: 54px;
@@ -409,16 +543,19 @@ h1 {
   cursor: pointer;
 }
 
+
 .main-button:active {
+
   background: #236fce;
 }
 
 
 /* =====================================
-   MENSAGEM DE COPIADO
+   FEEDBACK
 ===================================== */
 
 #feedback {
+
   margin: 8px 0 0;
 
   min-height: 16px;
@@ -438,20 +575,29 @@ h1 {
 @media (max-width: 400px) {
 
   .top {
+
     height: 64px;
   }
 
+
   .container {
+
     padding-left: 12px;
+
     padding-right: 12px;
   }
 
+
   .card {
+
     margin-top: 44px;
   }
 
+
   .logo-icon {
+
     width: 68px;
+
     height: 68px;
 
     margin-top: -34px;
@@ -459,40 +605,59 @@ h1 {
     font-size: 23px;
   }
 
+
   h1 {
+
     font-size: 23px;
   }
 
+
   .small {
+
     font-size: 14px;
   }
+
 
   .yellow {
+
     font-size: 14px;
   }
 
+
   .instructions h2 {
+
     font-size: 20px;
   }
 
+
   .steps {
+
     font-size: 14px;
   }
 
+
   .recipient {
+
     font-size: 13px;
   }
 
+
   .code-area {
+
     min-height: 68px;
   }
 
+
   #pixDisplay {
+
     font-size: 13px;
   }
 
+
   .main-button {
+
     height: 52px;
+
     font-size: 17px;
   }
 
@@ -506,20 +671,26 @@ h1 {
 @media (max-width: 350px) {
 
   h1 {
+
     font-size: 21px;
   }
 
+
   .instructions h2 {
+
     font-size: 19px;
   }
 
+
   .steps {
+
     font-size: 13px;
   }
 
 }
 
 </style>
+
 </head>
 
 
@@ -532,6 +703,7 @@ h1 {
 
 <div id="loading">
 
+
   <div id="logoScreen">
 
     <img
@@ -542,13 +714,16 @@ h1 {
 
   </div>
 
+
   <div id="spinnerScreen">
 
     <div class="spinner"></div>
 
   </div>
 
+
 </div>
+
 
 
 <!-- =====================================
@@ -565,66 +740,90 @@ h1 {
 
   <div class="container">
 
+
     <div class="card">
 
 
-      <!-- =================================
-           CABEÇALHO
-      ================================== -->
+      <!-- CABEÇALHO -->
 
       <div class="intro">
 
+
         <div class="logo-icon">
+
           R$
+
         </div>
+
 
         <div class="small">
+
           Falta só um passo!
+
         </div>
 
+
         <h1>
+
           Pague <span id="amount"></span>
+
           via Pix para garantir sua compra
+
         </h1>
 
+
       </div>
 
 
-      <!-- =================================
-           FAIXA AMARELA
-      ================================== -->
+
+      <!-- FAIXA AMARELA -->
 
       <div class="yellow">
+
         Confira os dados antes de pagar
+
       </div>
 
 
-      <!-- =================================
-           INSTRUÇÕES
-      ================================== -->
+
+      <!-- INSTRUÇÕES -->
 
       <div class="instructions">
 
+
         <h2>
+
           Instruções de pagamento
+
         </h2>
 
 
         <div class="steps">
 
+
           <p>
+
             1. Acesse seu Internet Banking ou app de pagamentos.
+
           </p>
 
+
           <p>
+
             2. Escolha pagar via Pix.
+
           </p>
 
+
           <p>
+
             3. Cole o código abaixo.
+
           </p>
+
 
         </div>
+
 
 
         <!-- BENEFICIÁRIO -->
@@ -638,35 +837,50 @@ h1 {
         </div>
 
 
+
         <!-- CÓDIGO PIX -->
 
         <div class="code-area">
 
+
           <div id="pixDisplay"></div>
+
 
           <button
             class="copy-small"
             onclick="copyPix()"
           >
+
             Copiar
+
           </button>
 
+
         </div>
+
 
 
         <!-- AVISO -->
 
         <div class="notice">
 
+
           <div class="info">
+
             i
+
           </div>
+
 
           <div>
+
             Confira o nome do beneficiário e o valor antes de confirmar o pagamento.
+
           </div>
 
+
         </div>
+
 
 
         <!-- BOTÃO -->
@@ -675,19 +889,26 @@ h1 {
           class="main-button"
           onclick="copyPix()"
         >
+
           Copiar código
+
         </button>
 
 
         <p id="feedback"></p>
 
+
       </div>
+
 
     </div>
 
+
   </div>
 
+
 </div>
+
 
 
 <script>
@@ -695,14 +916,19 @@ h1 {
 
 /* =====================================================
    DADOS DO PAGAMENTO
+
    ALTERE SOMENTE ESTAS 3 LINHAS
 ===================================================== */
 
+
 const VALOR = "53,99";
+
 
 const PIX = "COLE_SEU_PIX_COPIA_E_COLA_AQUI";
 
+
 const BENEFICIARIO = "NOME DO RECEBEDOR";
+
 
 
 /* =====================================================
@@ -710,7 +936,9 @@ const BENEFICIARIO = "NOME DO RECEBEDOR";
 ===================================================== */
 
 document.getElementById("amount").textContent =
+
   "R$ " + VALOR;
+
 
 
 /* =====================================================
@@ -718,24 +946,29 @@ document.getElementById("amount").textContent =
 ===================================================== */
 
 document.getElementById("beneficiary").textContent =
+
   BENEFICIARIO;
 
 
+
 /* =====================================================
-   MOSTRAR CÓDIGO PIX
+   MOSTRAR PIX
 ===================================================== */
 
 if (PIX.length > 48) {
 
   document.getElementById("pixDisplay").textContent =
+
     PIX.substring(0, 48) + "...";
 
 } else {
 
   document.getElementById("pixDisplay").textContent =
+
     PIX;
 
 }
+
 
 
 /* =====================================================
@@ -744,24 +977,35 @@ if (PIX.length > 48) {
 
 setTimeout(function() {
 
+
   document.getElementById("logoScreen").style.display =
+
     "none";
 
+
   document.getElementById("spinnerScreen").style.display =
+
     "flex";
 
 
   setTimeout(function() {
 
+
     document.getElementById("loading").style.display =
+
       "none";
 
+
     document.getElementById("payment").style.display =
+
       "block";
+
 
   }, 850);
 
+
 }, 1500);
+
 
 
 /* =====================================================
@@ -770,62 +1014,97 @@ setTimeout(function() {
 
 async function copyPix() {
 
+
   if (
+
     PIX === "COLE_SEU_PIX_COPIA_E_COLA_AQUI" ||
+
     !PIX.trim()
+
   ) {
 
+
     alert(
+
       "O código Pix ainda não foi configurado."
+
     );
 
+
     return;
+
   }
+
 
 
   try {
 
+
     await navigator.clipboard.writeText(PIX);
 
-  } catch (error) {
+
+  }
+
+  catch (error) {
+
 
     const area =
+
       document.createElement("textarea");
+
 
     area.value = PIX;
 
+
     area.style.position = "fixed";
+
     area.style.opacity = "0";
+
 
     document.body.appendChild(area);
 
+
     area.focus();
+
     area.select();
 
+
     const copied =
+
       document.execCommand("copy");
+
 
     document.body.removeChild(area);
 
 
+
     if (!copied) {
 
+
       alert(
+
         "Não foi possível copiar o código Pix."
+
       );
 
+
       return;
+
     }
 
   }
 
 
+
   document.getElementById("feedback").textContent =
+
     "Código Pix copiado!";
+
 
 }
 
 </script>
+
 
 </body>
 </html>
