@@ -2,11 +2,12 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Pagamento Pix</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -20,15 +21,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-   TELA DE CARREGAMENTO
-========================= */
+/* =====================================
+   TELA INICIAL
+===================================== */
 
 #loading {
   position: fixed;
   inset: 0;
-  background: #fff;
-  z-index: 1000;
+  background: #ffffff;
+  z-index: 9999;
 
   display: flex;
   align-items: center;
@@ -42,27 +43,9 @@ body {
 }
 
 #logoScreen img {
-  width: 115px;
-  height: 115px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
-}
-
-/* Caso a logo não seja encontrada */
-#logoFallback {
-  display: none;
-
-  width: 95px;
-  height: 95px;
-
-  border-radius: 50%;
-  background: #ffd800;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 24px;
-  font-weight: bold;
-  color: #222;
 }
 
 #spinnerScreen {
@@ -76,71 +59,68 @@ body {
   height: 48px;
 
   border: 4px solid #e5e5e5;
-  border-top-color: #3984ed;
+  border-top-color: #159c5c;
 
   border-radius: 50%;
 
-  animation: spin .85s linear 1;
+  animation: spin 0.85s linear 1;
 }
 
 @keyframes spin {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
-/* =========================
-   PAGAMENTO
-========================= */
+/* =====================================
+   PÁGINA
+===================================== */
 
 #payment {
   display: none;
   min-height: 100vh;
 }
 
-.top {
-  height: 65px;
-  background: #08a653;
-}
-
-/* =========================
-   CONTAINER
-========================= */
-
 .container {
   width: 100%;
-  max-width: 630px;
+  max-width: 600px;
 
   margin: 0 auto;
 
-  padding: 0 18px 25px;
+  padding: 0 14px 25px;
 }
 
-/* =========================
-   CARD
-========================= */
+/* =====================================
+   CARD PRINCIPAL
+===================================== */
 
 .card {
-  background: #fff;
+  position: relative;
+
+  background: #ffffff;
 
   border-radius: 9px;
 
-  box-shadow: 0 2px 5px rgba(0,0,0,.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 
-  overflow: hidden;
+  overflow: visible;
 
-  margin-top: 66px;
+  margin-top: 48px;
 }
 
-/* =========================
-   TOPO DO CARD
-========================= */
+/* =====================================
+   TOPO
+===================================== */
 
 .intro {
   text-align: center;
 
-  padding: 0 20px 18px;
+  padding: 0 18px 18px;
 }
+
+/* CÍRCULO DO R$ */
 
 .logo-icon {
   width: 72px;
@@ -150,41 +130,50 @@ body {
 
   border-radius: 50%;
 
+  background: #ffffff;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin: -36px auto 18px;
-
-  background: #fff;
+  margin: -36px auto 16px;
 
   color: #159c5c;
 
-  font-size: 24px;
+  font-size: 25px;
+
   font-weight: bold;
+
+  line-height: 1;
 }
+
+/* =====================================
+   TEXTO SUPERIOR
+===================================== */
 
 .small {
   font-size: 15px;
 
-  color: #666;
+  color: #666666;
 
   margin-bottom: 10px;
 }
 
 h1 {
-  font-size: 25px;
-
-  line-height: 1.25;
-
   margin: 0;
 
+  font-size: 25px;
+
+  line-height: 1.22;
+
   font-weight: 700;
+
+  color: #222222;
 }
 
-/* =========================
+/* =====================================
    FAIXA AMARELA
-========================= */
+===================================== */
 
 .yellow {
   background: #ffdf00;
@@ -196,64 +185,76 @@ h1 {
   font-size: 15px;
 
   font-weight: bold;
+
+  color: #222222;
 }
 
-/* =========================
+/* =====================================
    INSTRUÇÕES
-========================= */
+===================================== */
 
 .instructions {
-  margin-top: 0;
-
-  padding: 0 18px 22px;
+  padding: 0 18px 20px;
 }
 
 .instructions h2 {
-  font-size: 21px;
-
   margin: 0 -18px;
 
-  padding: 17px 18px;
+  padding: 16px 18px;
 
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dddddd;
+
+  font-size: 21px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
 }
+
+/* =====================================
+   PASSOS
+===================================== */
 
 .steps {
   padding-top: 5px;
 
   font-size: 15px;
 
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .steps p {
   margin: 10px 0;
 }
 
-/* =========================
+/* =====================================
    BENEFICIÁRIO
-========================= */
+===================================== */
 
 .recipient {
   background: #f3f3f3;
 
-  padding: 11px;
+  padding: 12px;
 
-  border-radius: 7px;
-
-  font-size: 14px;
+  border-radius: 8px;
 
   margin-top: 12px;
+
+  font-size: 14px;
 
   line-height: 1.4;
 }
 
-/* =========================
+.recipient strong {
+  font-weight: 700;
+}
+
+/* =====================================
    CÓDIGO PIX
-========================= */
+===================================== */
 
 .code-area {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
 
   border-radius: 8px;
 
@@ -267,40 +268,48 @@ h1 {
 
   gap: 8px;
 
-  color: #777;
+  background: #ffffff;
 
-  font-size: 14px;
+  min-height: 70px;
 }
 
 #pixDisplay {
   flex: 1;
 
-  overflow-wrap: anywhere;
+  min-width: 0;
+
+  color: #777777;
+
+  font-size: 14px;
 
   line-height: 1.35;
 
-  max-height: 52px;
+  overflow-wrap: anywhere;
+
+  max-height: 48px;
 
   overflow: hidden;
 }
 
 .copy-small {
+  flex-shrink: 0;
+
+  border: none;
+
+  background: transparent;
+
   color: #4783c7;
 
   font-size: 14px;
 
   cursor: pointer;
 
-  border: 0;
-
-  background: none;
-
-  padding: 4px;
+  padding: 5px;
 }
 
-/* =========================
+/* =====================================
    AVISO
-========================= */
+===================================== */
 
 .notice {
   margin-top: 14px;
@@ -309,15 +318,15 @@ h1 {
 
   border-left: 4px solid #3984ed;
 
+  border-radius: 5px;
+
   padding: 12px;
 
   display: flex;
 
-  gap: 10px;
-
   align-items: center;
 
-  border-radius: 5px;
+  gap: 10px;
 
   font-size: 14px;
 
@@ -325,45 +334,45 @@ h1 {
 }
 
 .info {
+  flex-shrink: 0;
+
+  width: 21px;
+  height: 21px;
+
   background: #3984ed;
 
-  color: white;
+  color: #ffffff;
 
   border-radius: 50%;
-
-  min-width: 21px;
-
-  height: 21px;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
-  font-weight: bold;
-
   font-size: 13px;
+
+  font-weight: bold;
 }
 
-/* =========================
+/* =====================================
    BOTÃO
-========================= */
+===================================== */
 
 .main-button {
   width: 100%;
 
-  height: 55px;
+  height: 54px;
 
   margin-top: 14px;
-
-  background: #3485ef;
 
   border: none;
 
   border-radius: 7px;
 
-  color: white;
+  background: #3485ef;
+
+  color: #ffffff;
 
   font-size: 18px;
 
@@ -376,39 +385,56 @@ h1 {
   background: #236fce;
 }
 
+/* =====================================
+   MENSAGEM
+===================================== */
+
 #feedback {
+  margin: 8px 0 0;
+
+  min-height: 16px;
+
   text-align: center;
 
   color: #159c5c;
 
   font-size: 13px;
-
-  min-height: 16px;
-
-  margin: 8px 0 0;
 }
 
-/* =========================
+/* =====================================
    CELULAR
-========================= */
+===================================== */
 
 @media (max-width: 400px) {
 
-  .top {
-    height: 60px;
-  }
-
   .container {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .card {
-    margin-top: 58px;
+    margin-top: 44px;
+  }
+
+  .logo-icon {
+    width: 68px;
+    height: 68px;
+
+    margin-top: -34px;
+
+    font-size: 23px;
   }
 
   h1 {
     font-size: 23px;
+  }
+
+  .small {
+    font-size: 14px;
+  }
+
+  .yellow {
+    font-size: 14px;
   }
 
   .instructions h2 {
@@ -419,19 +445,56 @@ h1 {
     font-size: 14px;
   }
 
+  .recipient {
+    font-size: 13px;
+  }
+
+  .code-area {
+    min-height: 68px;
+  }
+
+  #pixDisplay {
+    font-size: 13px;
+  }
+
   .main-button {
     height: 52px;
+
     font-size: 17px;
   }
+
 }
+
+/* =====================================
+   TELAS MUITO PEQUENAS
+===================================== */
+
+@media (max-width: 350px) {
+
+  h1 {
+    font-size: 21px;
+  }
+
+  .instructions h2 {
+    font-size: 19px;
+  }
+
+  .steps {
+    font-size: 13px;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =====================================
      TELA DE ABERTURA
-========================= -->
+===================================== -->
 
 <div id="loading">
 
@@ -440,36 +503,34 @@ h1 {
     <img
       src="logo.png"
       alt="Logo"
-      onerror="
-        this.style.display='none';
-        document.getElementById('logoFallback').style.display='flex';
-      "
+      onerror="this.style.display='none';"
     >
-
-    <div id="logoFallback">
-      R$
-    </div>
 
   </div>
 
   <div id="spinnerScreen">
+
     <div class="spinner"></div>
+
   </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================
      PÁGINA DE PAGAMENTO
-========================= -->
+===================================== -->
 
 <div id="payment">
-
-  <div class="top"></div>
 
   <div class="container">
 
     <div class="card">
+
+
+      <!-- =================================
+           CABEÇALHO
+      ================================== -->
 
       <div class="intro">
 
@@ -489,10 +550,18 @@ h1 {
       </div>
 
 
+      <!-- =================================
+           FAIXA
+      ================================== -->
+
       <div class="yellow">
         Confira os dados antes de pagar
       </div>
 
+
+      <!-- =================================
+           INSTRUÇÕES
+      ================================== -->
 
       <div class="instructions">
 
@@ -518,6 +587,10 @@ h1 {
         </div>
 
 
+        <!-- =================================
+             BENEFICIÁRIO
+        ================================== -->
+
         <div class="recipient">
 
           <strong>Beneficiário:</strong>
@@ -526,6 +599,10 @@ h1 {
 
         </div>
 
+
+        <!-- =================================
+             PIX
+        ================================== -->
 
         <div class="code-area">
 
@@ -541,6 +618,10 @@ h1 {
         </div>
 
 
+        <!-- =================================
+             AVISO
+        ================================== -->
+
         <div class="notice">
 
           <div class="info">
@@ -553,6 +634,10 @@ h1 {
 
         </div>
 
+
+        <!-- =================================
+             BOTÃO
+        ================================== -->
 
         <button
           class="main-button"
@@ -575,10 +660,11 @@ h1 {
 
 <script>
 
-/* ==========================================
+
+/* =====================================================
    DADOS DO PAGAMENTO
-   ALTERE SOMENTE ESTES 3 CAMPOS
-========================================== */
+   ALTERE SOMENTE ESTAS 3 LINHAS
+===================================================== */
 
 const VALOR = "53,99";
 
@@ -587,27 +673,46 @@ const PIX = "COLE_SEU_PIX_COPIA_E_COLA_AQUI";
 const BENEFICIARIO = "NOME DO RECEBEDOR";
 
 
-/* ==========================================
-   NÃO PRECISA ALTERAR ABAIXO
-========================================== */
+/* =====================================================
+   MOSTRAR VALOR
+===================================================== */
 
 document.getElementById("amount").textContent =
   "R$ " + VALOR;
 
+
+/* =====================================================
+   MOSTRAR BENEFICIÁRIO
+===================================================== */
+
 document.getElementById("beneficiary").textContent =
   BENEFICIARIO;
 
-document.getElementById("pixDisplay").textContent =
+
+/* =====================================================
+   MOSTRAR PIX
+===================================================== */
+
+if (
   PIX.length > 48
-    ? PIX.substring(0, 48) + "..."
-    : PIX;
+) {
+
+  document.getElementById("pixDisplay").textContent =
+    PIX.substring(0, 48) + "...";
+
+} else {
+
+  document.getElementById("pixDisplay").textContent =
+    PIX;
+
+}
 
 
-/* ==========================================
+/* =====================================================
    TELA DE ABERTURA
-========================================== */
+===================================================== */
 
-setTimeout(() => {
+setTimeout(function() {
 
   document.getElementById("logoScreen").style.display =
     "none";
@@ -616,7 +721,7 @@ setTimeout(() => {
     "flex";
 
 
-  setTimeout(() => {
+  setTimeout(function() {
 
     document.getElementById("loading").style.display =
       "none";
@@ -626,12 +731,12 @@ setTimeout(() => {
 
   }, 850);
 
-}, 2000);
+}, 1500);
 
 
-/* ==========================================
-   COPIAR PIX
-========================================== */
+/* =====================================================
+   COPIAR CÓDIGO PIX
+===================================================== */
 
 async function copyPix() {
 
@@ -640,7 +745,9 @@ async function copyPix() {
     !PIX.trim()
   ) {
 
-    alert("O código Pix ainda não foi configurado.");
+    alert(
+      "O código Pix ainda não foi configurado."
+    );
 
     return;
   }
@@ -650,25 +757,33 @@ async function copyPix() {
 
     await navigator.clipboard.writeText(PIX);
 
-  } catch (error) {
+  }
 
-    const area = document.createElement("textarea");
+  catch (error) {
+
+    const area =
+      document.createElement("textarea");
 
     area.value = PIX;
 
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+
     document.body.appendChild(area);
 
+    area.focus();
     area.select();
 
     const copied =
       document.execCommand("copy");
 
-    area.remove();
+    document.body.removeChild(area);
+
 
     if (!copied) {
 
       alert(
-        "Não foi possível copiar. Tente novamente."
+        "Não foi possível copiar o código Pix."
       );
 
       return;
